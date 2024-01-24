@@ -4,6 +4,7 @@ import (
 	"advert/models"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -11,14 +12,14 @@ import (
 )
 
 func GetCategoriesController(c *gin.Context) {
-	db := models.Database{ConnectionString: "user=postgres password=P@ssw0rd! dbname=advboarddb sslmode=disable"}
+	db := models.Database{ConnectionString: os.Getenv("QUERYSTRING")}
 	categories := db.GetCategories()
 
 	c.HTML(http.StatusOK, "adding-page.html", gin.H{"categories": categories})
 }
 
 func AddAdvPostController(c *gin.Context) {
-	db := models.Database{ConnectionString: "user=postgres password=P@ssw0rd! dbname=advboarddb sslmode=disable"}
+	db := models.Database{ConnectionString: os.Getenv("QUERYSTRING")}
 
 	category := c.PostForm("category")
 	title := c.PostForm("title")
