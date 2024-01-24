@@ -1,0 +1,20 @@
+{{ template "head-template.html"}}
+
+<body>
+    <div class="container text-center">
+        {{ $str := .advert }}
+        <div class="card" style="width: 18rem">
+            <img src="{{ $str.Image }}" class="card-image-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ $str.Title }}</h5>
+                <p class="card-text">{{ $str.Description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Price: {{ $str.Price }}</li>
+                <li class="list-group-item">Phone: {{ $str.Contact }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

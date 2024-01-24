@@ -1,0 +1,28 @@
+{{ template "head-template.html" }}
+
+<body>
+    <div class="container">
+        <form name="advert-data" action="/addAdvert" method="POST">
+            <label for="category">Категория:</label>
+            <select class="form-select" name="category" id="category">
+                {{ range $key, $value := .categories }}
+                <option value="{{ $value }}">{{ $value }}</option>
+                {{ end }}
+            </select>
+            <label for="title">Заголовок объявления:</label>
+            <input class="form-control" type="text" id="title" name="title">
+            <label for="short-description">Краткое описание:</label>
+            <input class="form-control" type="text" id="short-description" name="short-description">
+            <label for="description">Описание:</label>
+            <textarea class="form-control" id="description" name="description" cols="40" rows="10"></textarea>
+            <label for="image">Изображение:</label>
+            <input class="form-control" type="text" id="image" name="image-url">
+            <label for="price">Цена:</label>
+            <input class="form-control" type="text" id="price" name="price">
+            <label for="contact">Телефон:</label>
+            <input class="form-control" type="text" id="contact" name="contact">
+            <input class="form-control btn btn-primary" type="submit" name="add-advert" value="OK">
+        </form>
+
+    </div>
+</body>

@@ -1,0 +1,34 @@
+{{ template "head-template.html"}}
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container-fluid d-flex justify-content-end">
+                <form action="/addAdvert" method="GET">
+                    <button class="form-control btn btn-primary" type="submit">Добавить объявление</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            {{ range .model }}
+            <div class="col">
+                <form action="/details" method="GET">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ .Image }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" name="card-title">{{ .Title }}</h5>
+                            <p class="card-text">{{ .ShortDescription }}</p>
+                            <input type="submit" class="btn btn-primary" value="Details">
+                            <input type="text" name="advId" value="{{ .Id }}" style="visibility: hidden;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</body>
+
+</html>
