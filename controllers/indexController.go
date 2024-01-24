@@ -9,6 +9,8 @@ import (
 )
 
 func IndexController(c *gin.Context) {
+	endVar := os.Getenv("QUERYSTRING")
+	_ = endVar
 	db := models.Database{ConnectionString: os.Getenv("QUERYSTRING")}
 	listOfAdverts := db.GetEntries()
 	c.HTML(http.StatusOK, "index.html", gin.H{"model": listOfAdverts})

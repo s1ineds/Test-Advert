@@ -2,14 +2,11 @@ package main
 
 import (
 	"advert/controllers"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	fmt.Println("OK")
-
 	router := gin.Default()
 
 	router.LoadHTMLGlob("./views/*")
