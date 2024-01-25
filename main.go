@@ -19,7 +19,7 @@ func main() {
 	router.GET("/addAdvert", controllers.GetCategoriesController)
 	router.POST("/addAdvert", controllers.AddAdvPostController)
 
-	router.POST("/api", controllers.AddAdvert)
+	router.POST("/api/addAdvert", controllers.ApiAddAdvert)
 
 	router.Run("127.0.0.1:3000")
 }
