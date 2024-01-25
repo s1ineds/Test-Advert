@@ -26,10 +26,11 @@ func (db Database) connectToDb() *sql.DB {
 }
 
 func (db Database) GetEntries() []Advertisement {
+	defer db.recoverFromPanic()
 	connection := db.connectToDb()
 	defer connection.Close()
 
-	sql := `SELECT advId, category, title, short_description, description, image, price, contact, pub_date FROM board.category
+	sql := `SELECT advId, category, title, short_description, description, image, price, contact, pub_date, board.advert.category_id FROM board.category
 	INNER JOIN board.advert
 	ON board.category.category_id=board.advert.category_id`
 
@@ -43,7 +44,7 @@ func (db Database) GetEntries() []Advertisement {
 	for rows.Next() {
 		adv := Advertisement{}
 		err := rows.Scan(&adv.Id, &adv.Category, &adv.Title, &adv.ShortDescription, &adv.Description,
-			&adv.Image, &adv.Price, &adv.Contact, &adv.PubDate)
+			&adv.Image, &adv.Price, &adv.Contact, &adv.PubDate, &adv.CategoryId)
 		if err != nil {
 			log.Fatal(err)
 		}
